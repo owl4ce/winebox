@@ -1,4 +1,4 @@
-<p align="center"><a name="top" href="#satellite-winebox-a-winbox-installer-for-linux-with-wine"><img height="30%" width="50%" src="./.winebox/winebox.png"></a></p>
+<p align="center"><a name="top" href="#satellite-winebox-a-winbox-installer-for-linux-with-wine"><img width="30%" src="./.winebox/winebox.png"></a></p>
 
 ## :satellite: Winebox: A Winbox installer for Linux with WINE
 
