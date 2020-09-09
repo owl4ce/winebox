@@ -11,3 +11,9 @@ Clone this repository
 git clone https://github.com/owl4ce/winebox.git
 ```
 or download it as a zip. After that, execute the [install.sh](./install.sh) program.
+
+> :heavy_check_mark: Successfully tested at **wine-5.16 (Staging)**
+
+---
+
+<img src="./assets/winbox.png" alt="screenshots: winbox over wine" align="center">
