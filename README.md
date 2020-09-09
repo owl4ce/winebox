@@ -1,4 +1,4 @@
-<p align="center"><a name="top" href="#satellite-winebox-a-winbox-installer-for-linux-with-wine"><img width="25%" src="./.winebox/winebox.png"></a></p>
+<p align="center"><a name="top" href="#satellite-winebox-a-winbox-installer-for-linux-run-over-wine_glass-wine"><img width="25%" src="./.winebox/winebox.png"></a></p>
 
 <br>
 
@@ -16,4 +16,5 @@ or download it as a zip. After that, execute the [install.sh](./install.sh) prog
 
 ---
 
-<img src="./assets/winbox.png" alt="screenshots: winbox over wine" align="center">
+<img src="./assets/winbox1.png" alt="screenshots: winbox run over wine #1" align="center">
+<img src="./assets/winbox2.png" alt="screenshots: winbox run over wine #2" align="center">
