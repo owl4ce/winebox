@@ -2,7 +2,7 @@
 
 <br>
 
-## :satellite: Winebox: A Winbox installer for Linux with :wine_glass: [WINE](https://www.winehq.org/)
+## :satellite: Winebox: A Winbox installer for Linux run over :wine_glass: WINE
 
 <a href="./assets/preview.gif"><img src="./assets/preview.gif" alt="preview" align="right" width="516px"></a>
 
