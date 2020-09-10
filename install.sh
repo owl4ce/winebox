@@ -52,7 +52,7 @@ dtwine ()
         echo -e "${NC}$chkwine"
     else
         echo -e -n "${RED}Wine is not installed. "
-        echo -e "${NC}Please install the wine first! "
+        echo -e "${NC}Please install the wine first!"
         exit 1
     fi
 }
@@ -160,6 +160,7 @@ else
         case $yn in
             [Yy]* ) cp -r ./.winebox/ ~/
                     clear
+                    
                     if [[ $chkarch = *"64"* ]]; then
                         
                         if [[ $chkwinbox != *"winbox64.exe"* ]]; then
