@@ -1,8 +1,8 @@
-<p align="center"><a name="top" href="#satellite-winebox-a-winbox-installer-for-linux-run-over-wine_glass-wine"><img width="25%" src="./.winebox/winebox.png"></a></p>
+<p align="center"><a name="top" href="#satellite-winebox-a-winbox-installer-for-linux-run-over-wine"><img width="25%" src="./.winebox/winebox.png"></a></p>
 
 <br>
 
-<h2 align="center">:satellite: Winebox: A Winbox installer for Linux run over :wine_glass: WINE</h2>
+<h2 align="center">:satellite: Winebox: A Winbox installer for Linux run over WINE</h2>
 
 <a href="./assets/preview.gif"><img src="./assets/preview.gif" alt="preview" align="right" width="516px"></a>
 
