@@ -4,7 +4,7 @@
 
 <h2 align="center">:satellite: Winebox: A Winbox installer for Linux run over WINE</h2>
 
-<a href="./assets/preview.gif"><img src="./assets/preview.gif" alt="preview" align="right" width="516px"></a>
+<a href="./assets/preview.gif"><img src="./assets/preview.gif" alt="preview" align="left" width="516px"></a>
 
 Clone this repository
 ```bash
