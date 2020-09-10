@@ -96,13 +96,13 @@ if [[ $(whoami) != *"root"* ]]; then
         echo -n -e "${CYAN}Creating desktop shortcut... "
         mkds
         echo "[Desktop Entry]
-    Comment=Run MikroTik Winbox over WINE (64-bit)
-    Terminal=false
-    Name=Winebox
-    Categories=Network;
-    Exec=bash -c 'wine64 ~/.winebox/winbox64.exe'
-    Type=Application
-    Icon=/home/$(whoami)/.winebox/winebox.png" > ~/.local/share/applications/winebox.desktop
+Comment=Run MikroTik Winbox over WINE (64-bit)
+Terminal=false
+Name=Winebox
+Categories=Network;
+Exec=bash -c 'wine64 ~/.winebox/winbox64.exe'
+Type=Application
+Icon=/home/$(whoami)/.winebox/winebox.png" > ~/.local/share/applications/winebox.desktop
         sleep 2s
         echo -e "${GREEN}Winebox successfully installed!"
         
@@ -133,13 +133,13 @@ if [[ $(whoami) != *"root"* ]]; then
         echo -n -e "${CYAN}Creating desktop shortcut... "
         mkds
         echo "[Desktop Entry]
-    Comment=Run MikroTik Winbox over WINE (32-bit)
-    Terminal=false
-    Name=Winebox
-    Categories=Network;
-    Exec=bash -c 'wine ~/.winebox/winbox.exe'
-    Type=Application
-    Icon=/home/$(whoami)/.winebox/winebox.png" > ~/.local/share/applications/winebox.desktop
+Comment=Run MikroTik Winbox over WINE (32-bit)
+Terminal=false
+Name=Winebox
+Categories=Network;
+Exec=bash -c 'wine ~/.winebox/winbox.exe'
+Type=Application
+Icon=/home/$(whoami)/.winebox/winebox.png" > ~/.local/share/applications/winebox.desktop
         sleep 2s
         echo -e "${GREEN}Winebox successfully installed!"
         
