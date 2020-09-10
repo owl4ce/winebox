@@ -42,7 +42,7 @@ mkds ()
 cp -r ./.winebox/ ~/
 clear
 
-# Detect OS Architecture
+# Detecting OS architecture
 if [[ $chkarch = *"x86_64"* ]]; then
 
     echo -e -n "${CYAN}Detected OS architecture... "
