@@ -2,7 +2,7 @@
 
 <br>
 
-## :satellite: Winebox: A Winbox installer for Linux run over :wine_glass: WINE
+<h2 align="center">:satellite: Winebox: A Winbox installer for Linux run over :wine_glass: WINE</h2>
 
 <a href="./assets/preview.gif"><img src="./assets/preview.gif" alt="preview" align="right" width="516px"></a>
 
@@ -18,3 +18,5 @@ or download it as a zip. After that, execute the [install.sh](./install.sh) prog
 
 <img src="./assets/winbox1.png" alt="screenshots: winbox run over wine #1" align="center">
 <img src="./assets/winbox2.png" alt="screenshots: winbox run over wine #2" align="center">
+
+<a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><p align="center">Ubuntu Light Themes 12.10</p><a>
