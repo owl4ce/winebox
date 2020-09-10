@@ -7,6 +7,7 @@
 <a href="./assets/preview.gif"><img src="./assets/preview.gif" alt="preview" align="left" width="516px"></a>
 
 <p align="center">Clone this repository</p>
+
 ```bash
 git clone https://github.com/owl4ce/winebox.git
 ```
