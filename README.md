@@ -17,7 +17,6 @@ Or download it as a zip. After that, execute the [install.sh](./install.sh) prog
 
 ---
 
-<img src="./assets/winbox1.png" alt="screenshots: winbox run over wine #1" align="center">
-<img src="./assets/winbox2.png" alt="screenshots: winbox run over wine #2" align="center">
+<img src="./assets/winbox1.png" alt="screenshots: winbox run over wine" align="center">
 
 <a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><p align="center">Ubuntu Light Themes 12.10</p><a>
