@@ -174,7 +174,7 @@ else
                             read -p $'Do you wish to reinstall/upgrade Winbox? \e[1;35m(y/n)\e[0m ' yn
                                 case $yn in
                                     [Yy]* ) clear
-                                            echo -e "${CYAN}Upgrading Winbox (64-bit)..."
+                                            echo -e "${CYAN}Upgrading Winbox ${MAGENTA}(64-bit)${CYAN}..."
                                             echo -e "\033[0m"
                                             wget --progress=bar:force https://mt.lv/winbox64 -O ~/.winebox/winbox64.exe 2>&1 | progressfilt;
                                             break;;
