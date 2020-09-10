@@ -10,7 +10,7 @@ Clone this repository
 ```bash
 git clone https://github.com/owl4ce/winebox.git
 ```
-or download it as a zip. After that, execute the [install.sh](./install.sh) program.
+or download it as a zip. After that, execute the [install.sh](./install.sh) program as **non-root** user.
 
 > :heavy_check_mark: Successfully tested at **wine-5.16 (Staging)**
 
