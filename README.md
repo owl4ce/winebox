@@ -1,4 +1,4 @@
-<p align="center"><a name="top" href="#winebox-winbox-installer-for-linux"><img width="25%" src="./.winebox/winebox.png"></a></p>
+<p align="center"><a name="top" href="#winebox---winbox-installer-for-linux"><img width="25%" src="./.winebox/winebox.png"></a></p>
 
 <br>
 
