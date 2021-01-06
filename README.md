@@ -12,8 +12,8 @@
 ## Install
 Clone this repository.
 ```bash
-git clone https://github.com/owl4ce/winebox.git &&
-cd winebox && ./install.sh
+git clone https://github.com/owl4ce/winebox.git
+./winebox/install.sh
 ```
 
 > :heavy_check_mark: Successfully tested on **wine-5.22 (Staging)**
