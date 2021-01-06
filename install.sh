@@ -61,7 +61,9 @@ function setup {
 
 case $1 in
     --uninstall)
-        rm -r $HOME/.{winebox,local/share/applications/winebox.desktop}
+        if [[ -e $HOME/.winebox ]]; then
+            rm -r $HOME/.{winebox,local/share/applications/winebox.desktop} && echo -n -e "${GREEN}Winebox successfuly uninstalled."
+        fi
     ;;
     *)  clear
         if [[ $EUID -ne 0 ]]; then    
@@ -71,7 +73,7 @@ case $1 in
             echo -e "\033[0m"
             setup
             if [[ $chk_arch = *"64"* ]]; then
-                if [[ -f $HOME/.winebox/winbox64.exe != *"winbox64.exe"* ]]; then
+                if [[ -f $HOME/.winebox/winbox64.exe ]]; then
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(64-bit)${CYAN}..."
                     echo -e "\033[0m"
                     wget --progress=bar:force https://mt.lv/winbox64 -O $HOME/.winebox/winbox64.exe 2>&1 | progressfilt
@@ -105,7 +107,7 @@ Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/wineb
                 sleep 1s
                 echo -e "${GREEN}Winebox successfully installed!"
             else
-                if [[ -f $HOME/.winebox/winbox.exe != *"winbox.exe"* ]]; then
+                if [[ -f $HOME/.winebox/winbox.exe ]]; then
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(32-bit)${CYAN}..."
                     echo -e "\033[0m"
                     wget --progress=bar:force https://mt.lv/winbox -O $HOME/.winebox/winbox.exe 2>&1 | progressfilt
