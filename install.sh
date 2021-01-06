@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Bash script to install winbox on Linux (WINE)
+# Bash script to install winbox on Linux (wine)
 # Author: owl4ce
 # License: GPL-3.0
 # ---------------------------------------------
