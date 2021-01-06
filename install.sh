@@ -54,11 +54,6 @@ function dtwine {
     fi
 }
 
-function setup {
-    mkdir -p $HOME/.winebox
-    wget https://raw.githubusercontent.com/owl4ce/winebox/master/.winebox/winebox.png -O $HOME/.winebox/winebox.png 2> /dev/null &
-}
-
 case $1 in
     --uninstall)
         if [[ -e $HOME/.winebox ]]; then
@@ -71,7 +66,7 @@ case $1 in
             echo -n -e "${CYAN}Detected OS architecture: "
             echo -e "${NC}$chk_arch-bit"
             echo -e "\033[0m"
-            setup
+            cp -r ./.winebox $HOME/
             if [[ $chk_arch = *"64"* ]]; then
                 if [[ ! -f $HOME/.winebox/winbox64.exe ]]; then
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(64-bit)${CYAN}..."
