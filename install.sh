@@ -56,13 +56,13 @@ function dtwine {
 
 function setup {
     mkdir -p $HOME/.winebox
-    wget --progress=bar:force https://raw.githubusercontent.com/owl4ce/winebox/master/.winebox/winebox.png -O $HOME/.winebox/winebox.png 2>&1 | progressfilt
+    wget https://raw.githubusercontent.com/owl4ce/winebox/master/.winebox/winebox.png -O $HOME/.winebox/winebox.png 2> /dev/null &
 }
 
 case $1 in
     --uninstall)
         if [[ -e $HOME/.winebox ]]; then
-            rm -r $HOME/.{winebox,local/share/applications/winebox.desktop} && echo -n -e "${GREEN}Winebox successfuly uninstalled."
+            rm -rv $HOME/.{winebox,local/share/applications/winebox.desktop} && echo -e "${GREEN}Winebox successfuly uninstalled."
         fi
     ;;
     *)  clear
@@ -73,7 +73,7 @@ case $1 in
             echo -e "\033[0m"
             setup
             if [[ $chk_arch = *"64"* ]]; then
-                if [[ -f $HOME/.winebox/winbox64.exe ]]; then
+                if [[ ! -f $HOME/.winebox/winbox64.exe ]]; then
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(64-bit)${CYAN}..."
                     echo -e "\033[0m"
                     wget --progress=bar:force https://mt.lv/winbox64 -O $HOME/.winebox/winbox64.exe 2>&1 | progressfilt
@@ -107,7 +107,7 @@ Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/wineb
                 sleep 1s
                 echo -e "${GREEN}Winebox successfully installed!"
             else
-                if [[ -f $HOME/.winebox/winbox.exe ]]; then
+                if [[ ! -f $HOME/.winebox/winbox.exe ]]; then
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(32-bit)${CYAN}..."
                     echo -e "\033[0m"
                     wget --progress=bar:force https://mt.lv/winbox -O $HOME/.winebox/winbox.exe 2>&1 | progressfilt
