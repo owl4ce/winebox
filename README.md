@@ -4,19 +4,28 @@
 
 <h2 align="center">Winebox - Winbox Installer for Linux</h2>
 
-<a href="./assets/preview.gif"><img src="./assets/preview.gif" alt="preview" align="left" width="516px"></a>
+<a href="#winebox---winbox-installer-for-linux"><img src="./screenshots/run.gif" align="left" width="516px"/></a>
 
-<p align="center">Clone this repository</p>
+## Dependencies <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/winebox?style=flat-square&label=&color=fa74b2&logo=GitHub&logoColor=white&labelColor=373e4d"/>
+`wget`  
+`wine`
 
+## Install
+Clone this repository.
 ```bash
 git clone https://github.com/owl4ce/winebox.git
+cd winebox && ./install.sh
 ```
-Or download it as a zip. After that, execute the [install.sh](./install.sh) program.
 
-> :heavy_check_mark: Successfully tested on **wine-5.16 (Staging)**
+### Uninstall
+```bash
+./install.sh --uninstall
+```
 
----
+> :heavy_check_mark: Successfully tested on **wine-5.22 (Staging)**
 
-<img src="./assets/winbox.png" alt="screenshots: winbox run over wine" align="center">
+<br>
 
-<a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><p align="center">Ubuntu Light Themes 12.10</p><a>
+<img src="./screenshots/screenshot.png" align="center"/>
+
+## <a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><p align="center">Ubuntu Light Themes 12.10</p><a>
