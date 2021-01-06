@@ -12,7 +12,7 @@
 ## Install
 Clone this repository.
 ```bash
-git clone https://github.com/owl4ce/winebox.git
+git clone https://github.com/owl4ce/winebox.git &&
 cd winebox && ./install.sh
 ```
 
@@ -22,9 +22,9 @@ cd winebox && ./install.sh
 
 <img src="./screenshots/screenshot.png" align="center"/>
 
+## <a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><p align="center">Ubuntu Light Themes 12.10</p></a>
+
 ## Uninstall
 ```bash
 ./install.sh --uninstall
 ```
-
-## <a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><p align="center">Ubuntu Light Themes 12.10</p><a>
