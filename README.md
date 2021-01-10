@@ -7,10 +7,10 @@
 <a href="#winebox---winbox-installer-for-linux"><img src="./screenshots/run.gif" align="left" width="516px"/></a>
 
 ## Dependencies <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/winebox?style=flat-square&label=&color=fa74b2&logo=GitHub&logoColor=white&labelColor=373e4d"/>
-`bash` `wget` `wine`
+`bash` `git` `wget` `wine`
 
 ## Install
-Clone this repository.
+Clone this repository, then run `install.sh`.
 ```bash
 git clone https://github.com/owl4ce/winebox.git
 ./winebox/install.sh
