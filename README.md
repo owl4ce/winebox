@@ -10,7 +10,7 @@
 `bash` `git` `wget` `wine`
 
 ## Install
-Clone this repository, then run `install.sh`.
+Clone this repository, then run.
 ```bash
 git clone https://github.com/owl4ce/winebox.git
 ./winebox/install.sh
