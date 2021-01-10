@@ -12,8 +12,8 @@
 ## Install
 Clone this repository, then run.
 ```bash
-git clone https://github.com/owl4ce/winebox.git
-./winebox/install.sh
+$ git clone https://github.com/owl4ce/winebox.git
+$ ./winebox/install.sh
 ```
 
 > :heavy_check_mark: Successfully tested on **wine-5.22 (Staging)**
@@ -28,5 +28,5 @@ git clone https://github.com/owl4ce/winebox.git
 
 ## Uninstall
 ```bash
-./install.sh --uninstall
+$ ./install.sh --uninstall
 ```
