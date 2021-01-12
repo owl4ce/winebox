@@ -13,10 +13,12 @@
 Clone this repository, then run.
 ```bash
 $ git clone https://github.com/owl4ce/winebox.git
+```
+```bash
 $ ./winebox/install.sh
 ```
 
-> :heavy_check_mark: Successfully tested on **wine-5.22 (Staging)**
+> :heavy_check_mark: **wine-5.22 (Staging)**
 
 <br>
 
