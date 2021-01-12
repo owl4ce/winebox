@@ -12,41 +12,19 @@ CYAN='\033[1;36m'
 GREEN='\033[1;32m'
 NC='\033[0m'
 
-chk_wine="$(wine --version)"
-chk_arch="$(lscpu | grep "Architecture" | awk -F'_' '{print $2}')"
+CHK_ARCH="$(lscpu | grep "Architecture" | awk -F'_' '{print $2}')"
+winbox() { wget -q --show-progress -O $HOME/.winebox/winbox.exe https://mt.lv/winbox; }
+winbox64() { wget -q --show-progress -O $HOME/.winebox/winbox64.exe https://mt.lv/winbox64; }
 
-function progressfilt {
-    local flag=false c count cr=$'\r' nl=$'\n'
-    while IFS='' read -d '' -rn 1 c
-    do
-        if $flag
-        then
-            printf '%s' "$c"
-        else
-            if [[ $c != $cr && $c != $nl ]]
-            then
-                count=0
-            else
-                ((count++))
-                if ((count > 1))
-                then
-                    flag=true
-                fi
-            fi
-        fi
-    done
-}
-
-function mkds {
+mkds() {
     [[ ! -e $HOME/.local/share/applications ]] && mkdir -p $HOME/.local/share/applications
-    touch $HOME/.local/share/applications/winebox.desktop
-    chmod +x $HOME/.local/share/applications/winebox.desktop
+    touch $HOME/.local/share/applications/winebox.desktop && chmod +x $HOME/.local/share/applications/winebox.desktop
 }
 
-function dtwine {
-    if [[ $chk_wine = *"wine"* ]]; then
+dtwine() {
+    if [[ -x "$(which "wine" 2> /dev/null)" ]]; then
         echo -e -n "${CYAN}Detected Wine version: "
-        echo -e "${NC}$chk_wine"
+        echo -e "${NC}$(wine --version)"
     else
         echo -e -n "${RED}Wine is not installed. "
         echo -e "${NC}Please install the wine first!"
@@ -57,35 +35,32 @@ function dtwine {
 case $1 in
     --uninstall)
         if [[ -e $HOME/.winebox ]]; then
-            rm -rv $HOME/.{winebox,local/share/applications/winebox.desktop} && echo -e "${GREEN}Winebox successfuly uninstalled."
+            rm -rv $HOME/.{winebox,local/share/applications/winebox.desktop}
+            echo -e "${GREEN}Winebox successfuly uninstalled."
         fi
     ;;
     *)  clear
         if [[ $EUID -ne 0 ]]; then    
             dtwine
             echo -n -e "${CYAN}Detected OS architecture: "
-            echo -e "${NC}$chk_arch-bit"
-            echo -e "\033[0m"
-            cp -r ./.winebox $HOME/
-            if [[ $chk_arch = *"64"* ]]; then
+            echo -e "${NC}$CHK_ARCH-bit" && echo -e "${NC}"
+            cp -r ./.winebox $HOME/ &> /dev/null
+            if [[ $CHK_ARCH = *"64"* ]]; then
                 if [[ ! -f $HOME/.winebox/winbox64.exe ]]; then
-                    echo -e "${CYAN}Downloading Winbox ${MAGENTA}(64-bit)${CYAN}..."
-                    echo -e "\033[0m"
-                    wget --progress=bar:force https://mt.lv/winbox64 -O $HOME/.winebox/winbox64.exe 2>&1 | progressfilt
+                    echo -e "${CYAN}Downloading Winbox ${MAGENTA}(64-bit)${CYAN}..." && echo -e "${NC}"
+                    winbox64
                 else
                     while true; do
-                    echo -n -e "${GREEN}Winbox already exists. "
-                    echo -n -e "\033[0m"
+                    echo -n -e "${GREEN}Winbox already exists. " && echo -n -e "${NC}"
                     read -p $'Do you wish to reinstall/upgrade Winbox? \e[1;35m(y/n)\e[0m ' yn
                         case $yn in
                             [Yy]* ) clear
-                                    echo -e "${CYAN}Upgrading Winbox ${MAGENTA}(64-bit)${CYAN}..."
-                                    echo -e "\033[0m"
-                                    wget --progress=bar:force https://mt.lv/winbox64 -O $HOME/.winebox/winbox64.exe 2>&1 | progressfilt;
+                                    echo -e "${CYAN}Upgrading Winbox ${MAGENTA}(64-bit)${CYAN}..." && echo -e "${NC}"
+                                    winbox64
                                     break;;
                             [Nn]* ) exit;;
                             * ) echo -e "${RED}Please answer yes or no."
-                                echo -n -e "\033[0m";;
+                                echo -n -e "${NC}";;
                         esac
                     done
                 fi
@@ -96,30 +71,26 @@ Comment=Run MikroTik Winbox over Wine (64-bit)
 Terminal=false
 Name=Winebox
 Categories=Network;
-Exec=bash -c 'wine64 $HOME/.winebox/winbox64.exe'
+Exec=bash -c \"wine64 $HOME/.winebox/winbox64.exe\"
 Type=Application
 Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/winebox.desktop
-                sleep 1s
-                echo -e "${GREEN}Winebox successfully installed!"
+                sleep 1s && echo -e "${GREEN}Winebox successfully installed!"
             else
                 if [[ ! -f $HOME/.winebox/winbox.exe ]]; then
-                    echo -e "${CYAN}Downloading Winbox ${MAGENTA}(32-bit)${CYAN}..."
-                    echo -e "\033[0m"
-                    wget --progress=bar:force https://mt.lv/winbox -O $HOME/.winebox/winbox.exe 2>&1 | progressfilt
+                    echo -e "${CYAN}Downloading Winbox ${MAGENTA}(32-bit)${CYAN}..." && echo -e "${NC}"
+                    winbox
                 else
                     while true; do
-                    echo -n -e "${GREEN}Winbox already exists. "
-                    echo -n -e "\033[0m"
+                    echo -n -e "${GREEN}Winbox already exists. " && echo -n -e "${NC}"
                     read -p $'Do you wish to reinstall/upgrade Winbox? \e[1;35m(y/n)\e[0m ' yn
                         case $yn in
                             [Yy]* ) clear
-                                    echo -e "${CYAN}Upgrading Winbox ${MAGENTA}(32-bit)${CYAN}..."
-                                    echo -e "\033[0m"
-                                    wget --progress=bar:force https://mt.lv/winbox -O $HOME/.winebox/winbox.exe 2>&1 | progressfilt;
+                                    echo -e "${CYAN}Upgrading Winbox ${MAGENTA}(32-bit)${CYAN}..." && echo -e "${NC}"
+                                    winbox
                                     break;;
                             [Nn]* ) exit;;
                             * ) echo -e "${RED}Please answer yes or no."
-                                echo -n -e "\033[0m";;
+                                echo -n -e "${NC}";;
                         esac
                     done
                 fi
@@ -130,11 +101,10 @@ Comment=Run MikroTik Winbox over Wine (32-bit)
 Terminal=false
 Name=Winebox
 Categories=Network;
-Exec=bash -c 'wine $HOME/.winebox/winbox.exe'
+Exec=bash -c \"wine $HOME/.winebox/winbox.exe\"
 Type=Application
 Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/winebox.desktop
-                sleep 1s
-                echo -e "${GREEN}Winebox successfully installed!"
+                sleep 1s && echo -e "${GREEN}Winebox successfully installed!"
             fi
         else
             echo -e "${RED}Running as root is detected! Please run as regular user."
