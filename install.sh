@@ -51,7 +51,7 @@ case $1 in
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(64-bit)${CYAN}..." && echo -e "${NC}"
                     winbox64
                 else
-                    echo -n -e "${GREEN}Winbox already exists. ${RED}Exiting.." && echo -n -e "${NC}"
+                    echo -n -e "${GREEN}Winbox already exists. ${RED}Exiting.." && exit 1
                 fi
                 echo -n -e "${CYAN}Creating desktop shortcut... "
                 mkds
@@ -69,7 +69,7 @@ Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/wineb
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(32-bit)${CYAN}..." && echo -e "${NC}"
                     winbox
                 else
-                    echo -n -e "${GREEN}Winbox already exists. ${RED}Exiting.." && echo -n -e "${NC}"
+                    echo -n -e "${GREEN}Winbox already exists. ${RED}Exiting.." && exit 1
                 fi
                 echo -n -e "${CYAN}Creating desktop shortcut... "
                 mkds
