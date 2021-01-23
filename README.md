@@ -27,4 +27,4 @@ $ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/install.sh" | b
 
 ##  
 
-### <a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><p align="center">Ubuntu Light Themes 12.10</p></a>
+### <p align="center"><a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><kbd>Ubuntu Light Themes 12.10</kbd></a></p>
