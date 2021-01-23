@@ -53,6 +53,7 @@ case $1 in
                 else
                     echo -e "${GREEN}Winbox already exists. ${RED}Exiting.." && exit 1
                 fi
+                echo ""
                 echo -n -e "${CYAN}Creating desktop shortcut... "
                 mkds
                 echo "[Desktop Entry]
@@ -71,6 +72,7 @@ Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/wineb
                 else
                     echo -e "${GREEN}Winbox already exists. ${RED}Exiting.." && exit 1
                 fi
+                echo ""
                 echo -n -e "${CYAN}Creating desktop shortcut... "
                 mkds
                 echo "[Desktop Entry]
