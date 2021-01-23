@@ -69,9 +69,9 @@ Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/wineb
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(32-bit)${CYAN}..." && echo -e "${NC}"
                     winbox
                 else
-                    echo -n -e "${GREEN}Winbox already exists. ${RED}Exiting.." && exit 1
+                    echo -e "${GREEN}Winbox already exists. ${RED}Exiting.." && exit 1
                 fi
-                echo -e "${CYAN}Creating desktop shortcut... "
+                echo -n -e "${CYAN}Creating desktop shortcut... "
                 mkds
                 echo "[Desktop Entry]
 Comment=Run MikroTik Winbox over Wine (32-bit)
