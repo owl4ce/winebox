@@ -13,8 +13,8 @@ GREEN='\033[1;32m'
 NC='\033[0m'
 
 CHK_ARCH="$(lscpu | grep "Architecture" | awk -F'_' '{print $2}')"
-winbox() { wget -q --show-progress -O $HOME/.winebox/winbox.exe https://mt.lv/winbox; }
-winbox64() { wget -q --show-progress -O $HOME/.winebox/winbox64.exe https://mt.lv/winbox64; }
+winbox() { curl "https://mt.lv/winbox" -o $HOME/.winebox/winbox.exe; }
+winbox64() { curl "https://mt.lv/winbox64" -o $HOME/.winebox/winbox64.exe; }
 
 mkds() {
     [[ ! -e $HOME/.local/share/applications ]] && mkdir -p $HOME/.local/share/applications
@@ -33,8 +33,7 @@ dtwine() {
 }
 
 case $1 in
-    --uninstall)
-        if [[ -e $HOME/.winebox ]]; then
+    -u) if [[ -e $HOME/.winebox ]]; then
             rm -rv $HOME/.{winebox,local/share/applications/winebox.desktop}
             echo -e "${GREEN}Winebox successfuly uninstalled."
         fi
@@ -44,7 +43,9 @@ case $1 in
             dtwine
             echo -n -e "${CYAN}Detected OS architecture: "
             echo -e "${NC}$CHK_ARCH-bit" && echo -e "${NC}"
-            cp -r ./.winebox $HOME/ &> /dev/null
+            [[ ! -e $HOME/.winebox ]] && \
+            mkdir -p $HOME/.winebox && \
+            curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/.winebox/winebox.png" -o $HOME/.winebox/winebox.png
             if [[ $CHK_ARCH = *"64"* ]]; then
                 if [[ ! -f $HOME/.winebox/winbox64.exe ]]; then
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(64-bit)${CYAN}..." && echo -e "${NC}"
