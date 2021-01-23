@@ -51,7 +51,7 @@ case $1 in
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(64-bit)${CYAN}..." && echo -e "${NC}"
                     winbox64
                 else
-                    echo -n -e "${GREEN}Winbox already exists. ${RED}Exiting.." && exit 1
+                    echo -e "${GREEN}Winbox already exists. ${RED}Exiting.." && exit 1
                 fi
                 echo -n -e "${CYAN}Creating desktop shortcut... "
                 mkds
@@ -71,7 +71,7 @@ Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/wineb
                 else
                     echo -n -e "${GREEN}Winbox already exists. ${RED}Exiting.." && exit 1
                 fi
-                echo -n -e "${CYAN}Creating desktop shortcut... "
+                echo -e "${CYAN}Creating desktop shortcut... "
                 mkds
                 echo "[Desktop Entry]
 Comment=Run MikroTik Winbox over Wine (32-bit)
