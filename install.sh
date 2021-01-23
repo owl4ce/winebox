@@ -13,8 +13,8 @@ GREEN='\033[1;32m'
 NC='\033[0m'
 
 CHK_ARCH="$(lscpu | grep "Architecture" | awk -F'_' '{print $2}')"
-winbox() { curl "https://mt.lv/winbox" -o $HOME/.winebox/winbox.exe; }
-winbox64() { curl "https://mt.lv/winbox64" -o $HOME/.winebox/winbox64.exe; }
+winbox() { curl -L "https://mt.lv/winbox" -o $HOME/.winebox/winbox.exe; }
+winbox64() { curl -L "https://mt.lv/winbox64" -o $HOME/.winebox/winbox64.exe; }
 
 mkds() {
     [[ ! -e $HOME/.local/share/applications ]] && mkdir -p $HOME/.local/share/applications
@@ -45,7 +45,7 @@ case $1 in
             echo -e "${NC}$CHK_ARCH-bit" && echo -e "${NC}"
             [[ ! -e $HOME/.winebox ]] && \
             mkdir -p $HOME/.winebox && \
-            curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/.winebox/winebox.png" -o $HOME/.winebox/winebox.png
+            curl -sL "https://raw.githubusercontent.com/owl4ce/winebox/main/.winebox/winebox.png" -o $HOME/.winebox/winebox.png
             if [[ $CHK_ARCH = *"64"* ]]; then
                 if [[ ! -f $HOME/.winebox/winbox64.exe ]]; then
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(64-bit)${CYAN}..." && echo -e "${NC}"
