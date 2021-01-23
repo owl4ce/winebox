@@ -25,4 +25,4 @@ $ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/install.sh" | b
 
 <img src="./screenshots/screenshot.png" align="center"/>
 
-## <a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><p align="center">Ubuntu Light Themes 12.10</p></a>```
+## <a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><p align="center">Ubuntu Light Themes 12.10</p></a>
