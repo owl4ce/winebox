@@ -51,19 +51,7 @@ case $1 in
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(64-bit)${CYAN}..." && echo -e "${NC}"
                     winbox64
                 else
-                    while true; do
-                    echo -n -e "${GREEN}Winbox already exists. " && echo -n -e "${NC}"
-                    read -p $'Do you wish to reinstall/upgrade Winbox? \e[1;35m(y/n)\e[0m ' yn
-                        case $yn in
-                            [Yy]* ) clear
-                                    echo -e "${CYAN}Upgrading Winbox ${MAGENTA}(64-bit)${CYAN}..." && echo -e "${NC}"
-                                    winbox64
-                                    break;;
-                            [Nn]* ) exit;;
-                            * ) echo -e "${RED}Please answer yes or no."
-                                echo -n -e "${NC}";;
-                        esac
-                    done
+                    echo -n -e "${GREEN}Winbox already exists. ${RED}Exiting.." && echo -n -e "${NC}"
                 fi
                 echo -n -e "${CYAN}Creating desktop shortcut... "
                 mkds
@@ -81,19 +69,7 @@ Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/wineb
                     echo -e "${CYAN}Downloading Winbox ${MAGENTA}(32-bit)${CYAN}..." && echo -e "${NC}"
                     winbox
                 else
-                    while true; do
-                    echo -n -e "${GREEN}Winbox already exists. " && echo -n -e "${NC}"
-                    read -p $'Do you wish to reinstall/upgrade Winbox? \e[1;35m(y/n)\e[0m ' yn
-                        case $yn in
-                            [Yy]* ) clear
-                                    echo -e "${CYAN}Upgrading Winbox ${MAGENTA}(32-bit)${CYAN}..." && echo -e "${NC}"
-                                    winbox
-                                    break;;
-                            [Nn]* ) exit;;
-                            * ) echo -e "${RED}Please answer yes or no."
-                                echo -n -e "${NC}";;
-                        esac
-                    done
+                    echo -n -e "${GREEN}Winbox already exists. ${RED}Exiting.." && echo -n -e "${NC}"
                 fi
                 echo -n -e "${CYAN}Creating desktop shortcut... "
                 mkds
