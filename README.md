@@ -5,6 +5,7 @@
 ### Dependencies <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/winebox?style=flat-square&label=&color=fa74b2&logo=GitHub&logoColor=white&labelColor=373e4d"/>
 `bash` `curl` `wine`
 
+##  
 ### Install
 ```bash
 $ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/install.sh" | bash
@@ -12,15 +13,18 @@ $ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/install.sh" | b
 
 > :heavy_check_mark: **wine-5.22 (Staging)**
 
+##  
 ### Uninstall
 ```bash
 $ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/install.sh" | bash -s -- -u
 ```
 
-<br>
+##  
 
 <p align="center"><img src="./screenshots/apps-launcher.png" align="center"/></p>
 
 <p align="center"><img src="./screenshots/screenshot.png" align="center"/></p>
 
-## <a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><p align="center">Ubuntu Light Themes 12.10</p></a>
+##  
+
+### <a href="https://www.deviantart.com/aerilius/art/Ubuntu-Light-Themes-12-10-327631977"><p align="center">Ubuntu Light Themes 12.10</p></a>
