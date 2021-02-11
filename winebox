@@ -58,7 +58,7 @@ Comment=Run MikroTik Winbox over Wine (64-bit)
 Terminal=false
 Name=Winebox
 Categories=Network;
-Exec=bash -c \"wine64 $HOME/.winebox/winbox64.exe\"
+Exec=bash -c \"wine64 $HOME/.winebox/winbox64.exe &> /dev/null\"
 Type=Application
 Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/winebox.desktop
                 sleep 1s && echo -e "${G}Winebox successfully installed!"
@@ -77,7 +77,7 @@ Comment=Run MikroTik Winbox over Wine (32-bit)
 Terminal=false
 Name=Winebox
 Categories=Network;
-Exec=bash -c \"wine $HOME/.winebox/winbox.exe\"
+Exec=bash -c \"wine $HOME/.winebox/winbox.exe &> /dev/null\"
 Type=Application
 Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/winebox.desktop
                 sleep 1s && echo -e "${G}Winebox successfully installed!"
