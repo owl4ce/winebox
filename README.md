@@ -1,5 +1,5 @@
 <br>
-<p align="center"><a name="top" href="#dependencies-"><img width="25%" src="./.winebox/winebox.png"></a></p>
+<p align="center"><a name="top" href="#dependencies-"><img width="25%" src="./.winebox/winebox.jpg"></a></p>
 
 ##  
 ### Dependencies <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/winebox?style=flat-square&label=&color=fa74b2&logo=GitHub&logoColor=white&labelColor=373e4d"/>
@@ -21,9 +21,9 @@ $ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/install.sh" | b
 
 ##  
 
-<p align="center"><img src="./screenshots/apps-launcher.png" align="center"/></p>
+<p align="center"><img src="./screenshots/apps-launcher.jpg" align="center"/></p>
 
-<p align="center"><img src="./screenshots/screenshot.png" align="center"/></p>
+<p align="center"><img src="./screenshots/screenshot.jpg" align="center"/></p>
 
 ##  
 
