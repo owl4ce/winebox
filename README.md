@@ -8,7 +8,7 @@
 ##  
 ### Install
 ```bash
-$ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/install.sh" | bash
+$ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/winebox" | bash
 ```
 
 > :heavy_check_mark: **wine-5.22 (Staging)**
@@ -16,7 +16,7 @@ $ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/install.sh" | b
 ##  
 ### Uninstall
 ```bash
-$ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/install.sh" | bash -s -- -u
+$ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/winebox" | bash -s -- -u
 ```
 
 ##  
