@@ -6,25 +6,21 @@
 # ----------------------------------------------
 # https://github.com/owl4ce/winebox
 
-R='\e[1;31m'
-M='\e[1;35m'
-C='\e[1;36m'
-G='\e[1;32m'
-N='\e[0m'
+R="\e[1;31m"; M="\e[1;35m"; C="\e[1;36m"; G="\e[1;32m"; N="\e[0m"
 
 CHK_ARCH="$(lscpu | grep "Architecture" | awk -F'_' '{print $2}')"
 winbox() { curl -L "https://mt.lv/winbox" -o $HOME/.winebox/winbox.exe; }
 winbox64() { curl -L "https://mt.lv/winbox64" -o $HOME/.winebox/winbox64.exe; }
 
 mkds() {
-    [[ ! -e $HOME/.local/share/applications ]] && \
+    [[ ! -d $HOME/.local/share/applications ]] && \
     mkdir -p $HOME/.local/share/applications && \
     touch $HOME/.local/share/applications/winebox.desktop && \
     chmod +x $HOME/.local/share/applications/winebox.desktop
 }
 
 dtwine() {
-    if [[ -x "$(which "wine" 2> /dev/null)" ]]; then
+    if [[ -x "$(command -v "wine" 2> /dev/null)" ]]; then
         echo -e "${C}Detected Wine version: ${N}$(wine --version)"
     else
         echo -e "${R}Wine is not installed. ${N}Please install the wine first!" && exit 1
@@ -38,8 +34,7 @@ case $1 in
     ;;
     *)  clear
         if [[ $EUID -ne 0 ]]; then    
-            dtwine
-            echo -n -e "${C}Detected OS architecture: "
+            dtwine && echo -n -e "${C}Detected OS architecture: "
             echo -e "${N}$CHK_ARCH-bit" && echo -e "${N}"
             [[ ! -e $HOME/.winebox ]] && mkdir -p $HOME/.winebox && \
             curl -sL "https://raw.githubusercontent.com/owl4ce/winebox/main/.winebox/winebox.png" -o $HOME/.winebox/winebox.png
@@ -50,9 +45,7 @@ case $1 in
                 else
                     echo -e "${G}Winbox already exists. ${R}Exiting.." && exit 1
                 fi
-                echo ""
-                echo -n -e "${C}Creating desktop shortcut... "
-                mkds
+                echo -n -e "\n${C}Creating desktop shortcut... " && mkds
                 echo "[Desktop Entry]
 Comment=Run MikroTik Winbox over Wine (64-bit)
 Terminal=false
@@ -61,7 +54,7 @@ Categories=Network;
 Exec=bash -c \"wine64 $HOME/.winebox/winbox64.exe &> /dev/null\"
 Type=Application
 Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/winebox.desktop
-                sleep 1s && echo -e "${G}Winebox successfully installed!"
+                echo -e "${G}Winebox successfully installed!"
             else
                 if [[ ! -f $HOME/.winebox/winbox.exe ]]; then
                     echo -e "${C}Downloading Winbox ${M}(32-bit)${C}..." && echo -e "${N}"
@@ -69,9 +62,7 @@ Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/wineb
                 else
                     echo -e "${G}Winbox already exists. ${R}Exiting.." && exit 1
                 fi
-                echo ""
-                echo -n -e "${C}Creating desktop shortcut... "
-                mkds
+                echo -n -e "\n${C}Creating desktop shortcut... " && mkds
                 echo "[Desktop Entry]
 Comment=Run MikroTik Winbox over Wine (32-bit)
 Terminal=false
@@ -80,11 +71,10 @@ Categories=Network;
 Exec=bash -c \"wine $HOME/.winebox/winbox.exe &> /dev/null\"
 Type=Application
 Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/winebox.desktop
-                sleep 1s && echo -e "${G}Winebox successfully installed!"
+                echo -e "${G}Winebox successfully installed!"
             fi
         else
-            echo -e "${R}Running as root is detected! Please run as regular user."
-            exit 1
+            echo -e "${R}Running as root is detected! Please run as regular user." && exit 1
         fi
     ;;
 esac
