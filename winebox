@@ -6,9 +6,9 @@
 # ------------------------------------------
 # https://github.com/owl4ce/winebox
 
-R="\e[1;31m"; M="\e[1;35m"; G="\e[1;32m"; NC="\e[0m"
+printf "\033c"; R="\e[1;31m"; M="\e[1;35m"; G="\e[1;32m"; NC="\e[0m"
 
-checkdep() { command -v $1 > /dev/null 2>&1 || err "$1 is not installed. Please install it first!"; }
+checkdep() { command -v "$1" > /dev/null 2>&1 || err "$1 is not installed. Please install it first!"; }
 
 err() { echo -e "${R}==> Error:${NC} $@" && exit 1; }
 msg() { echo -e "${G}==> $@ ${NC}"; }
@@ -20,6 +20,7 @@ winbox64() { curl -L "https://mt.lv/winbox64" -o "$HOME/.winebox/winbox64.exe"; 
 
 install() {
     checkdep "wine" && msg "Detected Wine version:${NC} $(wine --version 2> /dev/null)"
+    checkdep "lscpu"
     checkdep "curl"
     
     msg "Detected OS architecture:${NC} $CHK_ARCH-bit"
@@ -44,23 +45,22 @@ install() {
     wine="wine64" && [[ $CHK_ARCH = "32" ]] && wine="wine"
     
     echo "[Desktop Entry]
-Comment=Run MikroTik Winbox over Wine ($(echo $CHK_ARCH)-bit)
+Comment=Run MikroTik Winbox over Wine ($CHK_ARCH-bit)
 Terminal=false
 Name=Winebox
 Categories=Network;
-Exec=bash -c \"$(echo $wine) $HOME/.winebox/winbox$(echo $CHK_ARCH).exe &> /dev/null\"
+GenericName=MikroTik Utility
+Exec=$wine $HOME/.winebox/winbox$CHK_ARCH.exe
 Type=Application
-Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/winebox.desktop
+Icon=$HOME/.winebox/winebox.png" > $HOME/.local/share/applications/winebox.desktop
 
     chmod +x "$HOME/.local/share/applications/winebox.desktop"
     
     msg "Winebox successfully installed!"
 }
 
-printf "\033c"
-
 if [[ $EUID -ne 0 ]]; then    
-    case $@ in
+    case $1 in
         -u) if [[ -d "$HOME/.winebox" ]]; then
                 rm -rv $HOME/.{winebox,local/share/applications/winebox.desktop} && \
                 msg "Winebox successfuly removed!"
