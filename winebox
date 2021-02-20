@@ -7,19 +7,23 @@
 # https://github.com/owl4ce/winebox
 
 R="\e[1;31m"; M="\e[1;35m"; G="\e[1;32m"; NC="\e[0m"
+
 checkdep() { command -v $1 > /dev/null 2>&1 || err "$1 is not installed. Please install it first!"; }
+
 err() { echo -e "${R}==> Error:${NC} $@" && exit 1; }
 msg() { echo -e "${G}==> $@ ${NC}"; }
 
 CHK_ARCH="$(lscpu | grep "Architecture" | awk -F'_' '{print $2}')"
-winbox32() { curl -L "https://mt.lv/winbox" -o $HOME/.winebox/winbox32.exe; }
-winbox64() { curl -L "https://mt.lv/winbox64" -o $HOME/.winebox/winbox64.exe; }
+
+winbox32() { curl -L "https://mt.lv/winbox" -o "$HOME/.winebox/winbox32.exe"; }
+winbox64() { curl -L "https://mt.lv/winbox64" -o "$HOME/.winebox/winbox64.exe"; }
 
 install() {
-    checkdep "wine" && \
-    msg "Detected Wine version:${NC} $(wine --version 2> /dev/null)"
+    #checkdep "wine" && msg "Detected Wine version:${NC} $(wine --version 2> /dev/null)"
     checkdep "curl"
+    
     msg "Detected OS architecture:${NC} $CHK_ARCH-bit"
+    
     [[ ! -e "$HOME/.winebox" ]] && mkdir -p "$HOME/.winebox" && \
     curl -sL "https://raw.githubusercontent.com/owl4ce/winebox/main/.winebox/winebox.png" -o $HOME/.winebox/winebox.png
     
@@ -32,11 +36,13 @@ install() {
     fi
     
     msg "Creating desktop shortcut... "
+    
     [[ ! -d "$HOME/.local/share/applications" ]] && \
-    mkdir -p $HOME/.local/share/applications && \
-    touch $HOME/.local/share/applications/winebox.desktop && \
-    chmod +x $HOME/.local/share/applications/winebox.desktop
+    mkdir -p "$HOME/.local/share/applications" && \
+    touch "$HOME/.local/share/applications/winebox.desktop"
+    
     wine="wine64" && [[ $CHK_ARCH = "32" ]] && wine="wine"
+    
     echo "[Desktop Entry]
 Comment=Run MikroTik Winbox over Wine ($(echo $CHK_ARCH)-bit)
 Terminal=false
@@ -45,14 +51,16 @@ Categories=Network;
 Exec=bash -c \"$(echo $wine) $HOME/.winebox/winbox$(echo $CHK_ARCH).exe &> /dev/null\"
 Type=Application
 Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/winebox.desktop
-    chmod +x $HOME/.local/share/applications/winebox.desktop
+
+    chmod +x "$HOME/.local/share/applications/winebox.desktop"
+    
     msg "Winebox successfully installed!"
 }
 
 printf "\033c"
 
 if [[ $EUID -ne 0 ]]; then    
-    case $1 in
+    case $@ in
         -u) if [[ -d "$HOME/.winebox" ]]; then
                 rm -rv $HOME/.{winebox,local/share/applications/winebox.desktop} && \
                 msg "Winebox successfuly removed!"
@@ -67,4 +75,3 @@ else
     err "Running as root is detected. Please run as regular user!"
     exit 1
 fi
-    
