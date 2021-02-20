@@ -1,50 +1,43 @@
 #!/usr/bin/env bash
 
-# Bash script to install winbox on Linux (wine)
+# Pure bash script to install winbox (wine)
 # Author: owl4ce
 # License: GPL-3.0
-# ----------------------------------------------
+# ------------------------------------------
 # https://github.com/owl4ce/winebox
 
-R="\e[1;31m"; M="\e[1;35m"; C="\e[1;36m"; G="\e[1;32m"; NC="\e[0m"
+R="\e[1;31m"; M="\e[1;35m"; G="\e[1;32m"; NC="\e[0m"
+checkdep() { command -v $1 > /dev/null 2>&1 || err "$1 is not installed. Please install it first!"; }
+err() { echo -e "${R}==> Error:${NC} $@" && exit 1; }
+msg() { echo -e "${G}==> $@ ${NC}"; }
 
 CHK_ARCH="$(lscpu | grep "Architecture" | awk -F'_' '{print $2}')"
 winbox32() { curl -L "https://mt.lv/winbox" -o $HOME/.winebox/winbox32.exe; }
 winbox64() { curl -L "https://mt.lv/winbox64" -o $HOME/.winebox/winbox64.exe; }
 
-mkds() {
+install() {
+    checkdep "wine" && \
+    msg "Detected Wine version:${NC} $(wine --version 2> /dev/null)"
+    checkdep "curl"
+    msg "Detected OS architecture:${NC} $CHK_ARCH-bit"
+    [[ ! -e "$HOME/.winebox" ]] && mkdir -p "$HOME/.winebox" && \
+    curl -sL "https://raw.githubusercontent.com/owl4ce/winebox/main/.winebox/winebox.png" -o $HOME/.winebox/winebox.png
+    
+    if [[ ! -f "$HOME/.winebox/winbox$CHK_ARCH.exe" ]]; then
+        msg "Downloading Winbox ${M}($CHK_ARCH-bit)${NC}"
+        winbox$CHK_ARCH
+    else
+        err "Winebox already exists. Exiting.."
+        exit 1
+    fi
+    
+    msg "Creating desktop shortcut... "
     [[ ! -d "$HOME/.local/share/applications" ]] && \
     mkdir -p $HOME/.local/share/applications && \
     touch $HOME/.local/share/applications/winebox.desktop && \
     chmod +x $HOME/.local/share/applications/winebox.desktop
-}
-
-dtwine() {
-    if [[ "$(command -v "wine")" ]]; then
-        echo -e "${C}Detected Wine version: ${NC}$(wine --version)"
-    else
-        echo -e "${R}Wine is not installed.${NC} Please install it first!"
-        exit 1
-    fi
-}
-
-install() {
-    if [[ "$EUID" -ne "0" ]]; then    
-        dtwine
-        echo -e "${C}Detected OS architecture:${NC} $CHK_ARCH-bit${NC}\n"
-        [[ ! -e "$HOME/.winebox" ]] && mkdir -p "$HOME/.winebox" && \
-        curl -sL "https://raw.githubusercontent.com/owl4ce/winebox/main/.winebox/winebox.png" -o $HOME/.winebox/winebox.png
-        if [[ ! -f "$HOME/.winebox/winbox$CHK_ARCH.exe" ]]; then
-            echo -e "${C}Downloading Winbox ${M}($CHK_ARCH-bit)${C}...${NC}\n"
-            winbox$CHK_ARCH
-        else
-            echo -e "${G}Winbox already exists. ${R}Exiting..${NC}"
-            exit 1
-        fi
-        echo -n -e "\n${C}Creating desktop shortcut... "
-        mkds
-        wine="wine64" && [[ $CHK_ARCH = "32" ]] && wine="wine"
-        echo "[Desktop Entry]
+    wine="wine64" && [[ $CHK_ARCH = "32" ]] && wine="wine"
+    echo "[Desktop Entry]
 Comment=Run MikroTik Winbox over Wine ($(echo $CHK_ARCH)-bit)
 Terminal=false
 Name=Winebox
@@ -52,21 +45,26 @@ Categories=Network;
 Exec=bash -c \"$(echo $wine) $HOME/.winebox/winbox$(echo $CHK_ARCH).exe &> /dev/null\"
 Type=Application
 Icon=$(echo $HOME)/.winebox/winebox.png" > $HOME/.local/share/applications/winebox.desktop
-        echo -e "${G}Winebox successfully installed!${NC}"
-    else
-        echo -e "${R}Running as root is detected.${NC} Please run as regular user!"
-        exit 1
-    fi
+    chmod +x $HOME/.local/share/applications/winebox.desktop
+    msg "Winebox successfully installed!"
 }
 
-case $1 in
-    -u) if [[ -d "$HOME/.winebox" ]]; then
-            rm -rv $HOME/.{winebox,local/share/applications/winebox.desktop} && \
-            echo -e "${G}Winebox successfuly removed.${NC}"
-        else
-            echo -e "${R}Winebox not installed.${NC}"
-        fi
-    ;;
-    *)  clear; install
-    ;;
-esac
+printf "\033c"
+
+if [[ $EUID -ne 0 ]]; then    
+    case $1 in
+        -u) if [[ -d "$HOME/.winebox" ]]; then
+                rm -rv $HOME/.{winebox,local/share/applications/winebox.desktop} && \
+                msg "Winebox successfuly removed!"
+            else
+                err "Winebox not installed!"
+            fi
+        ;;
+        *)  install
+        ;;
+    esac
+else
+    err "Running as root is detected. Please run as regular user!"
+    exit 1
+fi
+    
