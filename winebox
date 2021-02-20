@@ -19,7 +19,7 @@ winbox32() { curl -L "https://mt.lv/winbox" -o "$HOME/.winebox/winbox32.exe"; }
 winbox64() { curl -L "https://mt.lv/winbox64" -o "$HOME/.winebox/winbox64.exe"; }
 
 install() {
-    #checkdep "wine" && msg "Detected Wine version:${NC} $(wine --version 2> /dev/null)"
+    checkdep "wine" && msg "Detected Wine version:${NC} $(wine --version 2> /dev/null)"
     checkdep "curl"
     
     msg "Detected OS architecture:${NC} $CHK_ARCH-bit"
