@@ -11,7 +11,7 @@
 $ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/winebox" | bash
 ```
 
-> :heavy_check_mark: **wine-5.22 (Staging)**
+> :heavy_check_mark: **wine-6.2 (Staging)**
 
 ##  
 ### Uninstall
