@@ -6,12 +6,12 @@
 # ------------------------------------------
 # https://github.com/owl4ce/winebox
 
-printf "\033c"; R="\e[1;31m"; M="\e[1;35m"; G="\e[1;32m"; NC="\e[0m"
+printf "\033c"; R="\e[1;31m"; M="\e[1;35m"; G="\e[1;32m"; W="\e[1;37m"; NC="\e[0m"
 
 checkdep() { command -v "$1" > /dev/null 2>&1 || err "$1 is not installed. Please install it first!"; }
 
-err() { echo -e "${R}==> Error:${NC} $@" && exit 1; }
-msg() { echo -e "${G}==> $@ ${NC}"; }
+err() { echo -e "${R}==> Error:${W} $@${NC}" && exit 1; }
+msg() { echo -e "${G}==>${W} $@ ${NC}"; }
 
 CHK_ARCH="$(lscpu | grep "Architecture" | awk -F'_' '{print $2}')"
 
@@ -29,7 +29,7 @@ install() {
     curl -sL "https://raw.githubusercontent.com/owl4ce/winebox/main/.winebox/winebox.png" -o $HOME/.winebox/winebox.png
     
     if [[ ! -f "$HOME/.winebox/winbox$CHK_ARCH.exe" ]]; then
-        msg "Downloading Winbox ${M}($CHK_ARCH-bit)${NC}"
+        msg "Downloading Winbox ${M}[${W}$CHK_ARCH-bit${M}]${NC}"
         winbox$CHK_ARCH
     else
         err "Winebox already exists. Exiting.."
