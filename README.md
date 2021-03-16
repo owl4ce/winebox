@@ -21,9 +21,9 @@ $ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/winebox" | bash
 
 ##  
 
-<p align="center"><img src="./screenshots/apps-launcher.png" align="center"/></p>
-
 <p align="center"><img src="./screenshots/screenshot.png" align="center"/></p>
+
+<p align="center"><img src="./screenshots/apps-launcher.png" align="center"/></p>
 
 ##  
 
