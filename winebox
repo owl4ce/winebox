@@ -6,7 +6,8 @@
 # ------------------------------------------
 # https://github.com/owl4ce/winebox
 
-R="\e[1;31m"; M="\e[1;35m"; G="\e[1;32m"; W="\e[1;37m"; NC="\e[0m"
+
+LC_ALL=C; LANG=C; R="\e[1;31m"; M="\e[1;35m"; G="\e[1;32m"; W="\e[1;37m"; NC="\e[0m"
 
 checkdep() { command -v "$1" > /dev/null 2>&1 || err "$1 is not installed. Please install it first!"; }
 
