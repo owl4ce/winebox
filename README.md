@@ -2,21 +2,21 @@
 <p align="center"><a name="top" href="#dependencies-"><img width="25%" src="./.winebox/winebox.png"></a></p>
 
 ##  
-### Dependencies <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/winebox?style=flat-square&label=&color=fa74b2&logo=GitHub&logoColor=white&labelColor=373e4d"/>
-`bash` `curl` `wine`
+### Dependencies <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/winebox?style=flat-square&label=&color=63c5ea&logo=GitHub&logoColor=white&labelColor=373e4d"/>
+`sh/bash` `curl` `wine`
 
 ##  
 ### Install
-```bash
-$ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/winebox" | bash
+```sh
+$ sh <(curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/winebox")
 ```
 
 > :heavy_check_mark: **wine-6.X (Staging)**
 
 ##  
 ### Uninstall
-```bash
-$ curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/winebox" | bash -s -- -u
+```sh
+$ sh <(curl -s "https://raw.githubusercontent.com/owl4ce/winebox/main/winebox") -u
 ```
 
 ##  
