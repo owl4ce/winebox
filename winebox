@@ -1,78 +1,77 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# Pure bash script to install winbox (wine)
+# Shell script to install winbox on GNU/Linux (wine)
 # Author: owl4ce
 # License: GPL-3.0
-# ------------------------------------------
+# ---------------------------------
 # https://github.com/owl4ce/winebox
 
+LC_ALL=C LANG=C R="\033[1;31m" M="\033[1;35m" G="\033[1;32m" W="\033[1;37m" NC="\033[0m"
 
-LC_ALL=C; LANG=C; R="\e[1;31m"; M="\e[1;35m"; G="\e[1;32m"; W="\e[1;37m"; NC="\e[0m"
+checkdep() { type -p "$1" >/dev/null || err "${M}$1${NC} is not installed. Please install it first!"; }
 
-checkdep() { command -v "$1" > /dev/null 2>&1 || err "$1 is not installed. Please install it first!"; }
+err() { printf "${R} > error:${NC} $*\n"; exit 1; }
+msg() { printf "${G} > ${NC}$*\n"; }
 
-err() { echo -e "${R}==> Error:${W} $@${NC}" && exit 1; }
-msg() { echo -e "${G}==>${W} $@ ${NC}"; }
-
-CHK_ARCH="$(lscpu | grep "Architecture" | awk -F'_' '{print $2}')"
+CHK_ARCH="$(lscpu | awk -F'_' '/Architecture/{print $2}')"
 
 winbox32() { curl -L "https://mt.lv/winbox" -o "$HOME/.winebox/winbox32.exe"; }
 winbox64() { curl -L "https://mt.lv/winbox64" -o "$HOME/.winebox/winbox64.exe"; }
 
 install() {
-    checkdep "wine" && msg "Detected Wine version:${NC} $(wine --version 2> /dev/null)"
     checkdep "lscpu"
     checkdep "curl"
+    checkdep "wine"
     
-    msg "Detected OS architecture:${NC} $CHK_ARCH-bit"
+    msg "Wine: $(wine --version 2>/dev/null)"
+    msg "Arch: ${CHK_ARCH}-bit"
     
-    [[ ! -e "$HOME/.winebox" ]] && mkdir -p "$HOME/.winebox" && \
-    curl -sL "https://raw.githubusercontent.com/owl4ce/winebox/main/.winebox/winebox.png" -o $HOME/.winebox/winebox.png
+    [ ! -e "$HOME/.winebox" ] && mkdir -p "$HOME/.winebox" || :
+    curl -sL "https://raw.githubusercontent.com/owl4ce/winebox/main/.winebox/winebox.png" -o "$HOME/.winebox/winebox.png"
     
-    if [[ ! -f "$HOME/.winebox/winbox$CHK_ARCH.exe" ]]; then
-        msg "Downloading Winbox ${M}[${W}$CHK_ARCH-bit${M}]${NC}"
-        winbox$CHK_ARCH
+    if [ ! -f "$HOME/.winebox/winbox${CHK_ARCH}.exe" ]; then
+        msg "Downloading Winbox ${M}[${NC}${CHK_ARCH}-bit${M}]${NC}"
+        winbox${CHK_ARCH}
     else
-        err "Winebox already exists. Exiting.."
+        err "Winebox already exists. Exiting .."
         exit 1
     fi
     
-    msg "Creating desktop shortcut... "
-    
-    [[ ! -d "$HOME/.local/share/applications" ]] && \
+    msg "Creating desktop shortcut .. "
+    [ ! -d "$HOME/.local/share/applications" ] && \
     mkdir -p "$HOME/.local/share/applications" && \
     touch "$HOME/.local/share/applications/winebox.desktop"
     
-    wine="wine64" && [[ $CHK_ARCH = "32" ]] && wine="wine"
-    
+    [ "$CHK_ARCH" = "32" ] && wine="wine" || wine="wine64"
     echo "[Desktop Entry]
-Comment=Run MikroTik Winbox over Wine ($CHK_ARCH-bit)
+Comment=Run MikroTik Winbox over Wine (${CHK_ARCH}-bit)
 Terminal=false
 Name=Winebox
 Categories=Network;
 GenericName=MikroTik Utility
-Exec=$wine $HOME/.winebox/winbox$CHK_ARCH.exe
+Exec=$wine $HOME/.winebox/winbox${CHK_ARCH}.exe
 Type=Application
-Icon=$HOME/.winebox/winebox.png" > $HOME/.local/share/applications/winebox.desktop
+Icon=$HOME/.winebox/winebox.png" > "$HOME/.local/share/applications/winebox.desktop"
 
     chmod +x "$HOME/.local/share/applications/winebox.desktop"
-    
     msg "Winebox successfully installed!"
 }
 
-if [[ $EUID -ne 0 ]]; then    
+if [ "$EUID" -eq 0 ]; then    
+    err "Running as root is detected. Please run as regular user!"
+    exit 1
+else
     case $1 in
-        -u) if [[ -d "$HOME/.winebox" ]]; then
-                rm -rv $HOME/.{winebox,local/share/applications/winebox.desktop} && \
+        -u) if [ -d "$HOME/.winebox" ]; then
+                rm -rv $HOME/.{winebox,local/share/applications/winebox.desktop}
                 msg "Winebox successfuly removed!"
             else
                 err "Winebox not installed!"
             fi
         ;;
+        -*) err "unknown option ($1)"
+        ;;
         *)  install
         ;;
     esac
-else
-    err "Running as root is detected. Please run as regular user!"
-    exit 1
 fi
