@@ -8,10 +8,10 @@
 
 LC_ALL=C LANG=C R="\033[1;31m" M="\033[1;35m" G="\033[1;32m" W="\033[1;37m" NC="\033[0m"
 
-checkdep() { type -p "$1" >/dev/null || err "${M}$1${NC} is not installed. Please install it first!"; }
-
 err() { printf "${R} > error:${NC} $*\n"; exit 1; }
 msg() { printf "${G} > ${NC}$*\n"; }
+
+checkdep() { type "$1" >/dev/null || err "${M}$1${NC} is not installed. Please install it first!"; }
 
 CHK_ARCH="$(lscpu | awk -F'_' '/Architecture/{print $2}')"
 
@@ -57,7 +57,7 @@ Icon=$HOME/.winebox/winebox.png" > "$HOME/.local/share/applications/winebox.desk
     msg "Winebox successfully installed!"
 }
 
-if [ "$EUID" -eq 0 ]; then    
+if [ "$(id -u)" -eq 0 ]; then    
     err "Running as root is detected. Please run as regular user!"
     exit 1
 else
