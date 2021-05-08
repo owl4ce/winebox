@@ -3,7 +3,7 @@
 
 ##  
 ### Dependencies <img alt="" align="right" src="https://badges.pufler.dev/visits/owl4ce/winebox?style=flat-square&label=&color=63c5ea&logo=GitHub&logoColor=white&labelColor=373e4d"/>
-`sh/bash` `curl` `wine`
+`dash/bash` `curl` `wine`
 
 ##  
 ### Install
