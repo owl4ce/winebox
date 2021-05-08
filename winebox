@@ -63,7 +63,8 @@ if [ "$(id -u)" -eq 0 ]; then
 else
     case $1 in
         -u) if [ -d "$HOME/.winebox" ]; then
-                rm -rv $HOME/.{winebox,local/share/applications/winebox.desktop}
+                rm -rv $HOME/.winebox
+                rm -rv $HOME/.local/share/applications/winebox.desktop
                 msg "Winebox successfuly removed!"
             else
                 err "Winebox not installed!"
@@ -71,7 +72,6 @@ else
         ;;
         -*) err "unknown option ($1)"
         ;;
-        *)  install
-        ;;
+        *)  install;;
     esac
 fi
