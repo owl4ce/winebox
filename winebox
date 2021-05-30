@@ -11,7 +11,7 @@ LC_ALL=C LANG=C R="\033[1;31m" M="\033[1;35m" G="\033[1;32m" W="\033[1;37m" NC="
 err() { printf "${R} > error:${NC} $*\n"; exit 1; }
 msg() { printf "${G} > ${NC}$*\n"; }
 
-checkdep() { type "$1" >/dev/null || err "${M}$1${NC} is not installed. Please install it first!"; }
+checkdep() { type "$1" >/dev/null 2>&1 || err "${M}$1${NC} is not installed. Please install it first!"; }
 
 CHK_ARCH="$(lscpu | awk -F'_' '/Architecture/{print $2}')"
 
@@ -23,7 +23,7 @@ install() {
     checkdep "curl"
     checkdep "wine"
     
-    msg "Wine: $(wine --version 2>/dev/null)"
+    msg "Wine: $(wine --version 2>/dev/null 2>&1)"
     msg "Arch: ${CHK_ARCH}-bit"
     
     [ ! -e "$HOME/.winebox" ] && mkdir -p "$HOME/.winebox" || :
